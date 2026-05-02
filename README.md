@@ -2,7 +2,7 @@ NHS Lung Cancer Screening — Report Generator
 
 An AI-powered data analytics tool that transforms raw NHS 
 lung cancer screening data into a complete monthly 
-performance report in seconds — including interactive 
+performance report in seconds including interactive 
 dashboards, regional breakdowns, data quality checks, 
 and an AI-generated executive summary written in plain 
 English for non-technical Programme Directors.
