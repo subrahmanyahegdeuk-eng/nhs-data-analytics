@@ -1,0 +1,8 @@
+pandas
+numpy
+openpyxl
+matplotlib
+streamlit
+openai
+google-generativeai
+groq
