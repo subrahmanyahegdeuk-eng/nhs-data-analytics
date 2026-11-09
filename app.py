@@ -124,10 +124,13 @@ def run_analysis(conn):
     """, conn)
     data_quality = pd.read_sql("""
         SELECT COUNT(*) as total_records,
+            COUNT(*) - COUNT(DISTINCT patient_id) as duplicate_ids,
             SUM(CASE WHEN patient_id IS NULL THEN 1 ELSE 0 END) as missing_id,
             SUM(CASE WHEN referral_date IS NULL THEN 1 ELSE 0 END) as missing_date,
             SUM(CASE WHEN age IS NULL THEN 1 ELSE 0 END) as missing_age,
-            SUM(CASE WHEN age < 55 OR age > 74 THEN 1 ELSE 0 END) as out_of_range_age
+            SUM(CASE WHEN age < 55 OR age > 74 THEN 1 ELSE 0 END) as out_of_range_age,
+            SUM(CASE WHEN screening_date < referral_date
+                THEN 1 ELSE 0 END) as screened_before_referral
         FROM screening
     """, conn)
     return monthly, regional, outcomes, dna_reasons, age_groups, sites, data_quality
